@@ -1,0 +1,43 @@
+// journal
+loki.relabel "journal" {
+  forward_to = []
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label = "unit"
+  }
+}
+
+loki.source.journal "read"  {
+  forward_to = [loki.write.local.receiver]
+  relabel_rules = loki.relabel.journal.rules
+  labels = { component = "journal" }
+}
+
+// faro
+faro.receiver "faro" {
+  extra_log_labels = { component = "faro collector" }
+  server {
+    listen_port = 3011
+    cors_allowed_origins = ["*"]
+  }
+  output {
+    logs = [loki.process.faro.receiver]
+  }
+}
+
+loki.process "faro" {
+    forward_to = [loki.write.local.receiver]
+    stage.logfmt {
+        mapping = { "kind" = "", "service_name" = "", "app" = "" }
+    }
+    stage.labels {
+        values = { "kind" = "kind", "service_name" = "service_name", "app" = "app" }
+    }
+}
+
+// outputs
+loki.write "local" {
+  endpoint {
+    url = "http://localhost:3010/loki/api/v1/push"
+  }
+}

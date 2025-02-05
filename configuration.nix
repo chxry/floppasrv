@@ -1,19 +1,38 @@
-{ pkgs, ... }: {
-  networking.hostName = "floppasrv";
+{ config, pkgs, ... }: {
+  imports = [
+    ./grafana/grafana.nix
+  ];
+
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
-    
-  services.openssh.enable = true;
+  
   environment.systemPackages = with pkgs; [
     helix
   ];
-  programs = {
-    git = {
+  
+  programs.git = {
+    enable = true;
+    config = {
+      user.name = "chxry";
+      user.email = "floppa9@proton.me";
+    };
+  };
+
+  services.openssh.enable = true;
+
+  services.caddy = {
+    enable = true;
+    virtualHosts."${config.networking.domain}".extraConfig = "root * /var/www\nfile_server";
+    virtualHosts."grafana.${config.networking.domain}".extraConfig = "reverse_proxy :${toString config.services.grafana.settings.server.http_port}";
+    virtualHosts."faro-collector.${config.networking.domain}".extraConfig = "reverse_proxy :3011";
+  };
+ 
+  networking = {
+    hostName = "floppasrv";
+    domain = "floppa.systems";
+    firewall = {
       enable = true;
-      config = {
-        user.name = "chxry";
-        user.email = "floppa9@proton.me";
-      };
+      allowedTCPPorts = [ 80 443 ];
     };
   };
   
