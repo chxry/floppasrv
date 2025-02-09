@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, inputs, ... }: {
   imports = [
     ./grafana/grafana.nix
   ];
@@ -8,6 +8,7 @@
   
   environment.systemPackages = with pkgs; [
     helix
+    nil
   ];
   
   programs.git = {
@@ -22,7 +23,7 @@
 
   services.caddy = {
     enable = true;
-    virtualHosts."${config.networking.domain}".extraConfig = "root * /var/www\nfile_server";
+    virtualHosts."${config.networking.domain}".extraConfig = "root * ${inputs.floppasite.packages.aarch64-linux.default}\nfile_server";
     virtualHosts."grafana.${config.networking.domain}".extraConfig = "reverse_proxy :${toString config.services.grafana.settings.server.http_port}";
     virtualHosts."faro-collector.${config.networking.domain}".extraConfig = "reverse_proxy :3011";
   };

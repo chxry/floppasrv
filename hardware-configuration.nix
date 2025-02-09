@@ -5,6 +5,7 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
     device = "nodev";
+    configurationLimit = 1;
   };
   boot.initrd = {
     availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" ];
