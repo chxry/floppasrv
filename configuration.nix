@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }: {
   imports = [
-    ./grafana/grafana.nix
+    ./grafana.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
@@ -20,12 +20,17 @@
   };
 
   services.openssh.enable = true;
-
+  services.floppa.grafana.enable = true;
   services.caddy = {
     enable = true;
-    virtualHosts."${config.networking.domain}".extraConfig = "root * ${inputs.floppasite.packages.aarch64-linux.default}\nfile_server";
-    virtualHosts."grafana.${config.networking.domain}".extraConfig = "reverse_proxy :${toString config.services.grafana.settings.server.http_port}";
-    virtualHosts."faro-collector.${config.networking.domain}".extraConfig = "reverse_proxy :3011";
+    virtualHosts = {
+      "${config.networking.domain}".extraConfig = ''
+        root * ${inputs.floppasite.packages.aarch64-linux.default}
+        file_server
+      '';
+      "grafana.${config.networking.domain}".extraConfig = "reverse_proxy :${toString config.services.floppa.grafana.ports.grafana}";
+      "faro-collector.${config.networking.domain}".extraConfig = "reverse_proxy :${toString config.services.floppa.grafana.ports.faro}";
+    };
   };
  
   networking = {
