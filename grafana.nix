@@ -1,6 +1,13 @@
-{ lib, config, pkgs, ... }:
-  let cfg = config.services.floppa.grafana;
-  in {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.services.floppa.grafana;
+in
+{
   options = {
     services.floppa.grafana = {
       enable = lib.mkEnableOption "enable grafana";
@@ -40,21 +47,27 @@
       scrapeConfigs = [
         {
           job_name = config.networking.hostName;
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString cfg.ports.node_exporter}" ];
-          }];
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.ports.node_exporter}" ];
+            }
+          ];
         }
         {
           job_name = "grafana";
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString cfg.ports.grafana}" ];
-          }];
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.ports.grafana}" ];
+            }
+          ];
         }
         {
           job_name = "prometheus";
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString cfg.ports.prometheus}" ];
-          }];
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.ports.prometheus}" ];
+            }
+          ];
         }
       ];
     };
@@ -64,7 +77,7 @@
       configuration = {
         auth_enabled = false;
         server.http_listen_port = cfg.ports.loki;
-      
+
         common = {
           ring = {
             instance_addr = "127.0.0.1";
@@ -73,15 +86,17 @@
           replication_factor = 1;
           path_prefix = "/tmp/loki";
         };
-      
-        schema_config.configs = [{
-          from = "2025-02-05";
-          store = "tsdb";
-          object_store = "filesystem";
-          schema = "v13";
-          index.prefix = "index_";
-          index.period = "24h";
-        }];
+
+        schema_config.configs = [
+          {
+            from = "2025-02-05";
+            store = "tsdb";
+            object_store = "filesystem";
+            schema = "v13";
+            index.prefix = "index_";
+            index.period = "24h";
+          }
+        ];
 
         storage_config.filesystem.directory = "/tmp/loki/chunks";
       };

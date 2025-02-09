@@ -8,7 +8,11 @@
     configurationLimit = 1;
   };
   boot.initrd = {
-    availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" ];
+    availableKernelModules = [
+      "ata_piix"
+      "uhci_hcd"
+      "xen_blkfront"
+    ];
     kernelModules = [ "nvme" ];
   };
   fileSystems = {

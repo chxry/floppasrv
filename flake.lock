@@ -1,8 +1,51 @@
 {
   "nodes": {
+    "fenix": {
+      "inputs": {
+        "nixpkgs": [
+          "floppa-files",
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": "rust-analyzer-src"
+      },
+      "locked": {
+        "lastModified": 1739082714,
+        "narHash": "sha256-cylMa750pId3Hqvzyurd86qJIYyyMWB0M7Gbh7ZB2tY=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "e84058a7fe56aa01f2db19373cce190098494698",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
+      }
+    },
+    "floppa-files": {
+      "inputs": {
+        "fenix": "fenix",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1739114170,
+        "narHash": "sha256-5++WfHik6RcfzzowRYVOpMIo2JCM4nLDUKd7aZt2QLE=",
+        "ref": "refs/heads/v4",
+        "rev": "7b8d4cfd5baac3e0bc79f2ab45b3531f3d5a0c61",
+        "revCount": 75,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/chxry/floppa-files"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/chxry/floppa-files"
+      }
+    },
     "floppasite": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1739060983,
@@ -20,6 +63,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1739020877,
+        "narHash": "sha256-mIvECo/NNdJJ/bXjNqIh8yeoSjVLAuDuTUzAo7dzs8Y=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a79cfe0ebd24952b580b1cf08cd906354996d547",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1738680400,
         "narHash": "sha256-ooLh+XW8jfa+91F1nhf9OF7qhuA/y1ChLx6lXDNeY5U=",
         "owner": "nixos",
@@ -34,7 +93,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1739020877,
         "narHash": "sha256-mIvECo/NNdJJ/bXjNqIh8yeoSjVLAuDuTUzAo7dzs8Y=",
@@ -52,8 +111,26 @@
     },
     "root": {
       "inputs": {
+        "floppa-files": "floppa-files",
         "floppasite": "floppasite",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
+      }
+    },
+    "rust-analyzer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738997488,
+        "narHash": "sha256-jeNdFVtEDLypGIbNqBjURovfw9hMkVtlLR7j/5fRh54=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "208bc52b5dc177badc081c64eb0584a313c73242",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rust-lang",
+        "ref": "nightly",
+        "repo": "rust-analyzer",
+        "type": "github"
       }
     }
   },
