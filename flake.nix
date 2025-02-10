@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    floppasite.url = "github:chxry/floppasite";
+    floppasite.url = "git+https://github.com/chxry/floppasite?submodules=1";
     floppa-files.url = "git+https://github.com/chxry/floppa-files?submodules=1";
   };
   outputs =

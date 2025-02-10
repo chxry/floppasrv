@@ -48,17 +48,19 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1739060983,
-        "narHash": "sha256-1LX+DJLQDR9NBAwqh+XzXrdWD+GfGVxj6oJ/KEfdOfk=",
-        "owner": "chxry",
-        "repo": "floppasite",
-        "rev": "f1299e4c00855885354767300915b68a2941bb4d",
-        "type": "github"
+        "lastModified": 1739218538,
+        "narHash": "sha256-yxaJ2xHm+Z1R3MlHSf8R75jxjcJCetku1YKAGG9vDHc=",
+        "ref": "refs/heads/master",
+        "rev": "a8b8eef68779c4e575611c84892ecdadad63b85f",
+        "revCount": 32,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/chxry/floppasite"
       },
       "original": {
-        "owner": "chxry",
-        "repo": "floppasite",
-        "type": "github"
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/chxry/floppasite"
       }
     },
     "nixpkgs": {
