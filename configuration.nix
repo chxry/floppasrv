@@ -7,6 +7,7 @@
 {
   imports = [
     ./grafana.nix
+    ./minecraft.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
@@ -42,6 +43,8 @@
         "reverse_proxy :${toString config.services.floppa.grafana.ports.grafana}";
       "faro-collector.${config.networking.domain}".extraConfig =
         "reverse_proxy :${toString config.services.floppa.grafana.ports.faro}";
+
+      "map.${config.networking.domain}".extraConfig = "reverse_proxy :8100";
     };
   };
 
@@ -53,6 +56,7 @@
       allowedTCPPorts = [
         80
         443
+        25565
       ];
     };
   };
