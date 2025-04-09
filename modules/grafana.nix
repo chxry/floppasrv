@@ -76,7 +76,10 @@ in
       enable = true;
       configuration = {
         auth_enabled = false;
-        server.http_listen_port = cfg.ports.loki;
+        server = {
+          http_listen_port = cfg.ports.loki;
+          log_level = "warn";
+        };
 
         common = {
           ring = {

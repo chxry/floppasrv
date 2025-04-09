@@ -48,11 +48,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1739218538,
-        "narHash": "sha256-yxaJ2xHm+Z1R3MlHSf8R75jxjcJCetku1YKAGG9vDHc=",
+        "lastModified": 1744224325,
+        "narHash": "sha256-x44EXTZu9SZI/DaPK897iEbYL6U8HyfdtZlScNx/9bk=",
         "ref": "refs/heads/master",
-        "rev": "a8b8eef68779c4e575611c84892ecdadad63b85f",
-        "revCount": 32,
+        "rev": "b1f9814ad159ad5cf9d1e7aa6a3af7427cfd9135",
+        "revCount": 34,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/chxry/floppasite"
@@ -97,11 +97,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1739020877,
-        "narHash": "sha256-mIvECo/NNdJJ/bXjNqIh8yeoSjVLAuDuTUzAo7dzs8Y=",
+        "lastModified": 1744098102,
+        "narHash": "sha256-tzCdyIJj9AjysC3OuKA+tMD/kDEDAF9mICPDU7ix0JA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a79cfe0ebd24952b580b1cf08cd906354996d547",
+        "rev": "c8cd81426f45942bb2906d5ed2fe21d2f19d95b7",
         "type": "github"
       },
       "original": {

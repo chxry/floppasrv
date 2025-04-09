@@ -6,8 +6,9 @@
 }:
 {
   imports = [
-    ./grafana.nix
-    ./minecraft.nix
+    ./modules/grafana.nix
+    ./modules/minecraft.nix
+    ./modules/wireguard.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
@@ -27,9 +28,17 @@
     };
   };
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
+  };
+
   services.floppa.grafana.enable = true;
   services.floppa-files.enable = true;
+
   services.caddy = {
     enable = true;
     virtualHosts = {
@@ -58,9 +67,10 @@
         443
         25565
       ];
+      allowedUDPPorts = [ 51820 ];
     };
   };
-
+  
   users.users.root = {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPd3nbQWawoku+jKEsgN0Z9EJh5EYDBYrsbBLJoeazrz floppa"
